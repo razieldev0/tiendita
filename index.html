@@ -4,19 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deudores Pro · Tienda de Abarrotes</title>
-    <!-- Fuente profesional -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome para íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #eef2f7 100%);
@@ -24,7 +17,6 @@
             min-height: 100vh;
             padding: 20px;
         }
-
         .app-container {
             max-width: 900px;
             margin: 0 auto;
@@ -35,7 +27,6 @@
             padding: 24px 20px 30px;
             border: 1px solid rgba(255,255,255,0.8);
         }
-
         h1 {
             text-align: center;
             font-weight: 700;
@@ -51,8 +42,6 @@
             margin-bottom: 28px;
             font-weight: 500;
         }
-
-        /* Pestañas tipo píldora */
         .tabs {
             display: flex;
             justify-content: center;
@@ -63,7 +52,6 @@
             border-radius: 16px;
             flex-wrap: wrap;
         }
-
         .tab {
             flex: 1;
             min-width: 130px;
@@ -81,34 +69,16 @@
             justify-content: center;
             gap: 8px;
         }
-
         .tab.active {
             background: #2563eb;
             color: white;
             box-shadow: 0 4px 12px rgba(37,99,235,0.3);
             transform: translateY(-1px);
         }
-
-        .tab:hover:not(.active) {
-            background: #e2e8f0;
-            color: #1e293b;
-        }
-
-        .panel {
-            display: none;
-        }
-
-        .panel.active {
-            display: block;
-            animation: fadeIn 0.25s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Tarjetas */
+        .tab:hover:not(.active) { background: #e2e8f0; color: #1e293b; }
+        .panel { display: none; }
+        .panel.active { display: block; animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
         .card {
             background: white;
             border-radius: 18px;
@@ -116,18 +86,8 @@
             margin-bottom: 18px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.03);
             border: 1px solid #e9eef3;
-            transition: box-shadow 0.2s;
         }
-        .card:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-        }
-
-        .clientes-lista {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        .clientes-lista { display: flex; flex-direction: column; gap: 12px; }
         .cliente-item {
             display: flex;
             justify-content: space-between;
@@ -140,17 +100,8 @@
             border: 1px solid #f1f5f9;
             transition: all 0.2s;
         }
-        .cliente-item:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-        }
-
-        .cliente-info {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
+        .cliente-item:hover { border-color: #cbd5e1; box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
+        .cliente-info { display: flex; flex-direction: column; gap: 6px; }
         .cliente-nombre {
             font-weight: 700;
             font-size: 18px;
@@ -159,7 +110,6 @@
             align-items: center;
             gap: 10px;
         }
-
         .saldo-badge {
             background: #fee2e2;
             color: #b91c1c;
@@ -169,11 +119,7 @@
             font-size: 14px;
             display: inline-block;
         }
-        .saldo-badge.al-dia {
-            background: #dcfce7;
-            color: #166534;
-        }
-
+        .saldo-badge.al-dia { background: #dcfce7; color: #166534; }
         .deuda-progress {
             width: 100%;
             height: 6px;
@@ -182,22 +128,8 @@
             margin-top: 6px;
             overflow: hidden;
         }
-        .deuda-progress-fill {
-            height: 100%;
-            background: #ef4444;
-            border-radius: 10px;
-            transition: width 0.3s;
-        }
-        .deuda-progress-fill.pagada {
-            background: #22c55e;
-        }
-
-        .cliente-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-
+        .deuda-progress-fill { height: 100%; background: #ef4444; border-radius: 10px; transition: width 0.3s; }
+        .cliente-actions { display: flex; gap: 8px; align-items: center; }
         button {
             background: #2563eb;
             color: white;
@@ -213,45 +145,13 @@
             transition: all 0.2s;
             box-shadow: 0 2px 8px rgba(37,99,235,0.2);
         }
-
-        button:hover {
-            background: #1d4ed8;
-            box-shadow: 0 4px 14px rgba(37,99,235,0.3);
-            transform: translateY(-1px);
-        }
-
-        button.outline {
-            background: white;
-            color: #2563eb;
-            border: 1px solid #2563eb;
-            box-shadow: none;
-        }
-        button.outline:hover {
-            background: #eff6ff;
-        }
-
-        button.danger {
-            background: #ef4444;
-            box-shadow: 0 2px 8px rgba(239,68,68,0.2);
-        }
-        button.danger:hover {
-            background: #dc2626;
-        }
-
-        button.small {
-            padding: 8px 14px;
-            font-size: 13px;
-            border-radius: 8px;
-        }
-
-        button.icon-only {
-            padding: 10px;
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            justify-content: center;
-        }
-
+        button:hover { background: #1d4ed8; box-shadow: 0 4px 14px rgba(37,99,235,0.3); transform: translateY(-1px); }
+        button.outline { background: white; color: #2563eb; border: 1px solid #2563eb; box-shadow: none; }
+        button.outline:hover { background: #eff6ff; }
+        button.danger { background: #ef4444; box-shadow: 0 2px 8px rgba(239,68,68,0.2); }
+        button.danger:hover { background: #dc2626; }
+        button.small { padding: 8px 14px; font-size: 13px; border-radius: 8px; }
+        button.icon-only { padding: 10px; width: 40px; height: 40px; border-radius: 10px; justify-content: center; }
         input, select {
             width: 100%;
             padding: 12px 14px;
@@ -260,26 +160,12 @@
             font-size: 15px;
             font-family: 'Inter', sans-serif;
             background: #f8fafc;
-            transition: border 0.2s, box-shadow 0.2s;
             margin-top: 6px;
             margin-bottom: 16px;
+            transition: border 0.2s, box-shadow 0.2s;
         }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-            background: white;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            font-size: 14px;
-            color: #334155;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
+        input:focus, select:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.1); background: white; }
+        .form-group label { font-weight: 600; font-size: 14px; color: #334155; display: flex; align-items: center; gap: 6px; }
         .producto-linea {
             display: flex;
             gap: 10px;
@@ -290,11 +176,7 @@
             border-radius: 12px;
             border: 1px solid #e2e8f0;
         }
-        .producto-linea input {
-            margin: 0;
-            flex: 1;
-        }
-
+        .producto-linea input { margin: 0; flex: 1; }
         .total-display {
             background: #f1f5f9;
             padding: 14px 20px;
@@ -305,22 +187,16 @@
             justify-content: space-between;
             margin: 16px 0;
         }
-
-        /* Modal con efecto vidrio */
         .modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(15,23,42,0.4);
             backdrop-filter: blur(4px);
             justify-content: center;
             align-items: center;
             z-index: 100;
         }
-
         .modal-content {
             background: white;
             padding: 28px;
@@ -332,29 +208,10 @@
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
             animation: slideUp 0.25s ease;
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 12px;
-        }
-        th, td {
-            text-align: left;
-            padding: 12px 8px;
-            border-bottom: 1px solid #e9eef3;
-        }
-        th {
-            font-weight: 600;
-            color: #64748b;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        th, td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #e9eef3; }
+        th { font-weight: 600; color: #64748b; font-size: 13px; text-transform: uppercase; }
         .detalle-seccion h3 {
             font-weight: 700;
             margin-bottom: 10px;
@@ -363,25 +220,11 @@
             border-bottom: 2px solid #f1f5f9;
             padding-bottom: 8px;
         }
-
         @media (max-width: 600px) {
-            .app-container {
-                padding: 16px;
-                border-radius: 18px;
-            }
-            .tab {
-                font-size: 14px;
-                padding: 10px 12px;
-            }
-            .cliente-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-            .cliente-actions {
-                width: 100%;
-                justify-content: flex-end;
-            }
+            .app-container { padding: 16px; border-radius: 18px; }
+            .tab { font-size: 14px; padding: 10px 12px; }
+            .cliente-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+            .cliente-actions { width: 100%; justify-content: flex-end; }
         }
     </style>
 </head>
@@ -396,7 +239,6 @@
             <button class="tab" data-panel="nuevo-abono"><i class="fa-solid fa-coins"></i> Registrar Abono</button>
         </div>
 
-        <!-- Panel de Clientes -->
         <div id="panel-clientes" class="panel active">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
                 <h2 style="font-weight: 700; font-size: 22px;">Lista de clientes</h2>
@@ -405,7 +247,6 @@
             <div id="lista-clientes" class="clientes-lista"></div>
         </div>
 
-        <!-- Panel Nueva Compra -->
         <div id="panel-nueva-compra" class="panel">
             <h2 style="margin-bottom: 20px;"><i class="fa-solid fa-shopping-basket"></i> Registrar compra a crédito</h2>
             <div class="card">
@@ -428,7 +269,6 @@
             </div>
         </div>
 
-        <!-- Panel Nuevo Abono -->
         <div id="panel-nuevo-abono" class="panel">
             <h2 style="margin-bottom: 20px;"><i class="fa-solid fa-money-bill-wave"></i> Registrar abono</h2>
             <div class="card">
@@ -449,16 +289,15 @@
         </div>
     </div>
 
-    <!-- Modal para detalle de cliente -->
     <div id="modal-detalle" class="modal">
         <div class="modal-content">
             <h2 id="detalle-nombre" style="display: flex; align-items: center; gap: 8px;"></h2>
             <div id="detalle-contenido"></div>
-            <button id="cerrar-modal" class="outline" style="margin-top: 20px; width: 100%;"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+            <button id="btn-imprimir-comprobante" class="outline" style="margin-top: 15px; width: 100%;"><i class="fa-solid fa-print"></i> Imprimir Comprobante</button>
+            <button id="cerrar-modal" class="outline" style="margin-top: 10px; width: 100%;"><i class="fa-solid fa-xmark"></i> Cerrar</button>
         </div>
     </div>
 
-    <!-- Modal para agregar cliente -->
     <div id="modal-cliente" class="modal">
         <div class="modal-content">
             <h2 style="margin-bottom: 20px;"><i class="fa-solid fa-user-plus"></i> Nuevo Cliente</h2>
@@ -472,19 +311,17 @@
 
     <script>
         (function() {
+            // Configuración
             const STORAGE_KEY = 'debtAppData_v2';
-            let data = {
-                clientes: [],
-                compras: [],
-                abonos: []
-            };
+            const nombreTienda = "Abarrotes Chávez Ávila"; // Cambia aquí el nombre de tu tienda
+
+            let data = { clientes: [], compras: [], abonos: [] };
 
             function cargarDatos() {
                 const stored = localStorage.getItem(STORAGE_KEY);
                 if (stored) {
                     data = JSON.parse(stored);
                 } else {
-                    // Datos de ejemplo
                     data = {
                         clientes: [
                             { id: '1', nombre: 'María García López' },
@@ -507,25 +344,11 @@
                 }
             }
 
-            function guardarDatos() {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-            }
-
-            function generarId() {
-                return Date.now().toString(36) + Math.random().toString(36).substr(2);
-            }
-
-            function totalComprasCliente(clienteId) {
-                return data.compras.filter(c => c.clienteId === clienteId).reduce((s, c) => s + c.total, 0);
-            }
-
-            function totalAbonosCliente(clienteId) {
-                return data.abonos.filter(a => a.clienteId === clienteId).reduce((s, a) => s + a.monto, 0);
-            }
-
-            function saldoCliente(clienteId) {
-                return totalComprasCliente(clienteId) - totalAbonosCliente(clienteId);
-            }
+            function guardarDatos() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+            function generarId() { return Date.now().toString(36) + Math.random().toString(36).substr(2); }
+            function totalComprasCliente(id) { return data.compras.filter(c => c.clienteId === id).reduce((s, c) => s + c.total, 0); }
+            function totalAbonosCliente(id) { return data.abonos.filter(a => a.clienteId === id).reduce((s, a) => s + a.monto, 0); }
+            function saldoCliente(id) { return totalComprasCliente(id) - totalAbonosCliente(id); }
 
             function actualizarListaClientes() {
                 const container = document.getElementById('lista-clientes');
@@ -538,7 +361,6 @@
                     const totalDebe = totalComprasCliente(cliente.id);
                     const porcentaje = totalDebe > 0 ? (saldo / totalDebe) * 100 : 0;
                     const alDia = saldo <= 0;
-                    const claseSaldo = alDia ? 'al-dia' : '';
                     return `
                         <div class="cliente-item">
                             <div class="cliente-info" style="flex:1; min-width:200px;">
@@ -546,7 +368,7 @@
                                     <i class="fa-solid fa-user-circle" style="color: #2563eb; font-size: 24px;"></i> ${cliente.nombre}
                                 </div>
                                 <div>
-                                    <span class="saldo-badge ${claseSaldo}">${alDia ? 'Al día' : 'Debe: $' + saldo.toFixed(2)}</span>
+                                    <span class="saldo-badge ${alDia ? 'al-dia' : ''}">${alDia ? 'Al día' : 'Debe: $' + saldo.toFixed(2)}</span>
                                 </div>
                                 ${!alDia ? `<div class="deuda-progress"><div class="deuda-progress-fill" style="width: ${Math.min(100, porcentaje)}%"></div></div>` : ''}
                             </div>
@@ -557,7 +379,6 @@
                         </div>
                     `;
                 }).join('');
-
                 document.querySelectorAll('.ver-detalle').forEach(b => b.addEventListener('click', () => mostrarDetalleCliente(b.dataset.id)));
                 document.querySelectorAll('.eliminar-cliente').forEach(b => b.addEventListener('click', () => eliminarCliente(b.dataset.id)));
             }
@@ -575,8 +396,7 @@
                         <input type="text" placeholder="Nombre del producto" class="input-producto" style="flex:2">
                         <input type="number" placeholder="Precio" step="0.01" class="input-precio" value="0" style="flex:1">
                         <button class="small danger btn-eliminar-producto" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                `;
+                    </div>`;
                 const linea = cont.querySelector('.producto-linea');
                 linea.querySelector('.input-producto').addEventListener('input', calcularTotalCompra);
                 linea.querySelector('.input-precio').addEventListener('input', calcularTotalCompra);
@@ -591,8 +411,7 @@
                 div.innerHTML = `
                     <input type="text" placeholder="Nombre del producto" class="input-producto" style="flex:2">
                     <input type="number" placeholder="Precio" step="0.01" class="input-precio" value="0" style="flex:1">
-                    <button class="small danger btn-eliminar-producto"><i class="fa-solid fa-xmark"></i></button>
-                `;
+                    <button class="small danger btn-eliminar-producto"><i class="fa-solid fa-xmark"></i></button>`;
                 cont.appendChild(div);
                 div.querySelector('.input-producto').addEventListener('input', calcularTotalCompra);
                 div.querySelector('.input-precio').addEventListener('input', calcularTotalCompra);
@@ -628,36 +447,30 @@
                 });
                 if (!clienteId) return alert('Selecciona un cliente');
                 if (!fecha) return alert('Ingresa una fecha');
-                if (items.length === 0) return alert('Agrega al menos un producto con precio mayor a 0');
-                data.compras.push({
-                    id: generarId(),
-                    clienteId,
-                    fecha,
-                    items,
-                    total: items.reduce((s, i) => s + i.precio, 0)
-                });
+                if (items.length === 0) return alert('Agrega al menos un producto con precio');
+                data.compras.push({ id: generarId(), clienteId, fecha, items, total: items.reduce((s, i) => s + i.precio, 0) });
                 guardarDatos();
                 actualizarListaClientes();
                 document.getElementById('fecha-compra').value = new Date().toISOString().split('T')[0];
                 renderizarProductos();
-                alert('✅ Compra registrada correctamente');
+                alert('✅ Compra registrada');
             }
 
             function guardarAbono() {
                 const clienteId = document.getElementById('select-cliente-abono').value;
                 const fecha = document.getElementById('fecha-abono').value;
                 const monto = parseFloat(document.getElementById('monto-abono').value);
-                if (!clienteId || !fecha || !monto || monto <= 0) return alert('Completa todos los campos correctamente');
+                if (!clienteId || !fecha || !monto || monto <= 0) return alert('Completa los campos');
                 data.abonos.push({ id: generarId(), clienteId, fecha, monto });
                 guardarDatos();
                 actualizarListaClientes();
                 document.getElementById('fecha-abono').value = new Date().toISOString().split('T')[0];
                 document.getElementById('monto-abono').value = '';
-                alert('💰 Abono registrado correctamente');
+                alert('💰 Abono registrado');
             }
 
             function eliminarCliente(id) {
-                if (!confirm('¿Eliminar este cliente y todo su historial?')) return;
+                if (!confirm('¿Eliminar cliente y todo su historial?')) return;
                 data.clientes = data.clientes.filter(c => c.id !== id);
                 data.compras = data.compras.filter(c => c.clienteId !== id);
                 data.abonos = data.abonos.filter(a => a.clienteId !== id);
@@ -707,6 +520,10 @@
                 document.getElementById('detalle-contenido').innerHTML = html;
                 document.getElementById('modal-detalle').style.display = 'flex';
 
+                // Configurar botón de impresión
+                document.getElementById('btn-imprimir-comprobante').onclick = () => generarComprobanteImpresion(cliente);
+
+                // Eventos de eliminación
                 document.querySelectorAll('.eliminar-compra').forEach(b => b.addEventListener('click', () => {
                     if (confirm('¿Eliminar esta compra?')) {
                         data.compras = data.compras.filter(c => c.id !== b.dataset.id);
@@ -725,6 +542,70 @@
                 }));
             }
 
+            function generarComprobanteImpresion(cliente) {
+                const id = cliente.id;
+                const compras = data.compras.filter(c => c.clienteId === id).sort((a,b) => a.fecha.localeCompare(b.fecha));
+                const abonos = data.abonos.filter(a => a.clienteId === id).sort((a,b) => a.fecha.localeCompare(b.fecha));
+                const totalCompras = totalComprasCliente(id);
+                const totalAbonos = totalAbonosCliente(id);
+                const saldo = totalCompras - totalAbonos;
+                const fechaEmision = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                const ventana = window.open('', '_blank', 'width=800,height=600');
+                ventana.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Comprobante - ${cliente.nombre}</title>
+                        <style>
+                            body { font-family: 'Courier New', monospace; margin: 30px; color: #000; }
+                            h2, h3 { text-align: center; margin: 5px 0; }
+                            .datos { margin-bottom: 15px; }
+                            table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+                            th, td { border: 1px solid #000; padding: 6px; text-align: left; }
+                            .total { font-weight: bold; }
+                            .footer { margin-top: 30px; text-align: center; font-size: 12px; }
+                            @media print {
+                                body { margin: 0; }
+                                button { display: none; }
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h2>${nombreTienda}</h2>
+                        <h3>Comprobante de Cuenta Corriente</h3>
+                        <div class="datos">
+                            <p><strong>Cliente:</strong> ${cliente.nombre}</p>
+                            <p><strong>Fecha de emisión:</strong> ${fechaEmision}</p>
+                        </div>
+                        <h4>Compras a crédito</h4>
+                        <table>
+                            <tr><th>Fecha</th><th>Producto</th><th>Precio</th></tr>
+                            ${compras.flatMap(c => c.items.map(item => `<tr><td>${c.fecha}</td><td>${item.producto}</td><td>$${item.precio.toFixed(2)}</td></tr>`)).join('')}
+                            <tr class="total"><td colspan="2">Total compras</td><td>$${totalCompras.toFixed(2)}</td></tr>
+                        </table>
+                        <h4>Abonos realizados</h4>
+                        <table>
+                            ${abonos.length ? '<tr><th>Fecha</th><th>Monto</th></tr>' : ''}
+                            ${abonos.map(a => `<tr><td>${a.fecha}</td><td>$${a.monto.toFixed(2)}</td></tr>`).join('')}
+                            ${abonos.length ? `<tr class="total"><td>Total abonos</td><td>$${totalAbonos.toFixed(2)}</td></tr>` : '<p>No se han registrado abonos.</p>'}
+                        </table>
+                        <h3>Saldo pendiente: $${saldo.toFixed(2)}</h3>
+                        ${saldo === 0 ? '<p style="text-align:center; font-size:18px;">✅ DEUDA LIQUIDADA</p>' : ''}
+                        <div class="footer">
+                            <p>Gracias por su preferencia<br>Este comprobante es un resumen de movimientos.</p>
+                        </div>
+                        <button onclick="window.print(); setTimeout(window.close, 500);" style="display:block; margin:20px auto; padding:10px 20px;">Imprimir</button>
+                    </body>
+                    </html>
+                `);
+                ventana.document.close();
+                // Pequeño retraso para asegurar render antes de imprimir
+                ventana.focus();
+                setTimeout(() => ventana.print(), 300);
+            }
+
             function iniciar() {
                 cargarDatos();
                 actualizarListaClientes();
@@ -734,7 +615,6 @@
                 document.getElementById('fecha-abono').value = hoy;
                 renderizarProductos();
 
-                // Pestañas
                 document.querySelectorAll('.tab').forEach(tab => {
                     tab.addEventListener('click', () => {
                         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -744,7 +624,6 @@
                     });
                 });
 
-                // Modal cliente
                 document.getElementById('btn-agregar-cliente').addEventListener('click', () => document.getElementById('modal-cliente').style.display = 'flex');
                 document.getElementById('cancelar-cliente').addEventListener('click', () => {
                     document.getElementById('modal-cliente').style.display = 'none';
